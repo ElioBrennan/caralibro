@@ -27,6 +27,8 @@ session_start();
 				break;
 			case "edit":
 				echo ('<title>CaraLibro - Editar información</title>');
+			case "delete":
+				echo ('<title>CaraLibro - Eliminar usuario</title>');
 			default:
 				echo ('<title>CaraLibro - Página principal</title>');
 		}
@@ -124,6 +126,7 @@ session_start();
 					|| $_GET["current"] == 'register'
 					|| $_GET["current"] == 'logout'
 					|| $_GET["current"] == 'edit'
+					|| $_GET["current"] == 'delete'
 				) {
 					include('view/contents/' . $_GET["current"] . '.content.php');
 				} else {

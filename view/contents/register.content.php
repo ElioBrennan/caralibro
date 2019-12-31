@@ -36,7 +36,7 @@
         if (count($_POST) > 0) {
             echo '<div class="alert alert-success">El registro se ha completado correctamente.</div>';
         }
-    } else {
+    } else if ($register == "KO") {
         echo '<script>
 				if ( window.history.replaceState ) {
 					window.history.replaceState( null, null, window.location.href );
@@ -44,6 +44,15 @@
             </script>';
         if (count($_POST) > 0) {
             echo '<div class="alert alert-warning">Se ha producido un error durante el registro.</div>';
+        }
+    } else if ($register == "USED") {
+        echo '<script>
+				if ( window.history.replaceState ) {
+					window.history.replaceState( null, null, window.location.href );
+				}
+            </script>';
+        if (count($_POST) > 0) {
+            echo '<div class="alert alert-warning">Este correo ya está siendo utilizado.</div>';
         }
     }
     ?>

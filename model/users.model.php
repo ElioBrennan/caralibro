@@ -7,22 +7,36 @@ class UsersModel
 
     static public function makeRegister($table, $data)
     {
-        $sql_statement = Connection::connect()->prepare(
-            "INSERT INTO $table(name, surname, email, password) VALUES
-            (:name, :surname, :email, :password)"
-        );
-        $sql_statement->bindParam(":name", $data["name"], PDO::PARAM_STR);
-        $sql_statement->bindParam(":surname", $data["surname"], PDO::PARAM_STR);
-        $sql_statement->bindParam(":email", $data["email"], PDO::PARAM_STR);
-        $sql_statement->bindParam(":password", $data["password"], PDO::PARAM_STR);
 
-        if ($sql_statement->execute()) {
-            return "OK";
-        } else {
-            return "KO";
+        $users = UsersModel::getAllUsers($table);
+        $notUsed = true;
+        foreach ($users as $key => $value) {
+            if ($value["email"] == $data["email"]) {
+                $notUsed = false;
+            }
         }
 
-        $sql_statement = null;
+        if ($notUsed) {
+            $sql_statement = Connection::connect()->prepare(
+                "INSERT INTO $table(name, surname, email, password) VALUES
+                (:name, :surname, :email, :password)"
+            );
+            $sql_statement->bindParam(":name", $data["name"], PDO::PARAM_STR);
+            $sql_statement->bindParam(":surname", $data["surname"], PDO::PARAM_STR);
+            $sql_statement->bindParam(":email", $data["email"], PDO::PARAM_STR);
+            $sql_statement->bindParam(":password", $data["password"], PDO::PARAM_STR);
+    
+            if ($sql_statement->execute()) {
+                return "OK";
+            } else {
+                return "KO";
+            }
+    
+            $sql_statement = null;
+        } else {
+            return "USED";
+        }
+        
     }
 
     static public function getAllUsers($table)
@@ -33,7 +47,8 @@ class UsersModel
         $sql_statement = null;
     }
 
-    static public function getUserByID($table, $id) {
+    static public function getUserByID($table, $id)
+    {
         $sql_statement = Connection::connect()->prepare(
             "SELECT *
             FROM $table
@@ -75,7 +90,23 @@ class UsersModel
         if ($sql_statement->execute()) {
             return "OK";
         } else {
-            print_r(Connection::connect() -> errorInfo());
+            return "KO";
+        }
+
+        $sql_statement = null;
+    }
+
+    static public function makeDelete($table, $data)
+    {
+        $sql_statement = Connection::connect()->prepare(
+            "DELETE FROM $table WHERE id=:id"
+        );
+
+        $sql_statement->bindParam(":id", $data, PDO::PARAM_INT);
+
+        if ($sql_statement->execute()) {
+            return "OK";
+        } else {
             return "KO";
         }
 

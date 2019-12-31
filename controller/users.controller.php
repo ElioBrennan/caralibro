@@ -121,4 +121,29 @@ class UsersController
             }
         }
     }
+
+    public function manageDelete() {
+        if (isset($_POST["makeDelete"])) {
+            $table = "usuarios";
+            $data = $_POST["makeDelete"];
+            $response = UsersModel::makeDelete($table, $data);
+            
+            if ($response == "OK") {
+                echo 
+                '<script type="text/javascript">
+				    if ( window.history.replaceState ) {
+					    window.history.replaceState( null, null, window.location.href );
+				    }
+                </script>';
+                echo '<div class="alert alert-success">El usuario se ha eliminado correctamente. ¡Te echaremos de menos!.</div>';
+                echo 
+                '<script type="text/javascript">
+                    setTimeout(function() {
+                        window.location = "index.php";
+                    }, 2500);
+                </script>';
+                session_destroy();
+            }
+        }
+    }
 }

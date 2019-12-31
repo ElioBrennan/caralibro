@@ -36,12 +36,12 @@ $users = UsersController::getUsers();
                 <td><?php echo $value["email"] ?></td>
                 <td><?php echo $value["date"] ?></td>
                 <td>
-                    <?php if ($value["email"] == $_SESSION["logged"])
-                    echo('<div class="btn-group">
-                        <a href="index.php?current=edit&id=' . $value["id"] . '"><button class="btn btn-primary">Editar</button></a>
-                        <button class="btn btn-danger">Eliminar</button>
-                    </div>');
-                    ?>
+                    <?php if ($value["email"] == $_SESSION["logged"]): ?>
+                    <div class="btn-group">
+                        <a href="index.php?current=edit&id=<?php echo ($value["id"]) ?>"><button class="btn btn-primary">Editar</button></a>
+                        <a href="index.php?current=delete&id=<?php echo ($value["id"]) ?>"><button class="btn btn-danger">Eliminar</button></a>
+                    </div>
+                    <?php endif ?>
                 </td>
             </tr>
         <?php endforeach ?>

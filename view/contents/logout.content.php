@@ -14,6 +14,15 @@ if (isset($_SESSION["logged"])) {
 }
 ?>
 
-<h1>EXIT</h1>
+<h1>¡Hasta otra!</h1>
+<p>Se te redirigirá a la pantalla de login en breves.</p>
+<?php
+    echo 
+    '<script type="text/javascript">
+        setTimeout(function() {
+            window.location = "index.php";
+        }, 2500);
+    </script>';
+?>
 
 <?php session_destroy(); ?>
