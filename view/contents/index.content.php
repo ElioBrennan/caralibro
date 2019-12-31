@@ -13,10 +13,13 @@ if (isset($_SESSION["logged"])) {
     return;
 }
 $users = UsersController::getUsers();
+
+
 ?>
 <table class="table table-striped">
     <thead>
         <tr>
+            <th>#</th>
             <th>Nombre</th>
             <th>Apellidos</th>
             <th>Correo electrónico</th>
@@ -27,6 +30,7 @@ $users = UsersController::getUsers();
     <tbody>
         <?php foreach ($users as $key => $value) : ?>
             <tr>
+                <td><?php echo $value["id"] ?></td>
                 <td><?php echo $value["name"] ?></td>
                 <td><?php echo $value["surname"] ?></td>
                 <td><?php echo $value["email"] ?></td>
@@ -34,7 +38,7 @@ $users = UsersController::getUsers();
                 <td>
                     <?php if ($value["email"] == $_SESSION["logged"])
                     echo('<div class="btn-group">
-                        <button class="btn btn-primary">Editar</button>
+                        <a href="index.php?current=edit&id=' . $value["id"] . '"><button class="btn btn-primary">Editar</button></a>
                         <button class="btn btn-danger">Eliminar</button>
                     </div>');
                     ?>
