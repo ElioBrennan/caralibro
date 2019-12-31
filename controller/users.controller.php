@@ -112,6 +112,12 @@ class UsersController
 				    }
                 </script>';
                 echo '<div class="alert alert-success">El registro se ha actualizado correctamente. Actualiza la página para ver los cambios.</div>';
+                echo 
+                '<script type="text/javascript">
+                    setTimeout(function() {
+                        window.location = "index.php";
+                    }, 2500);
+                </script>';
             }
         }
     }
