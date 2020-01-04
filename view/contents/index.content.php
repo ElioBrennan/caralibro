@@ -19,45 +19,48 @@ $idUser = '';
 ?>
 
 <br>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Nombre</th>
-            <th>Apellidos</th>
-            <th>Correo electrónico</th>
-            <th>Fecha de registro</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        foreach ($users as $key => $value) {
-            if ($value["email"] == $_SESSION["logged"])
-                $idUser = $value["id"];
-        }
-        ?>
-        <?php foreach ($users as $key => $value) : ?>
+<div class="container" style="overflow-y: scroll; height: 250px">
+
+    <table class="table table-striped">
+        <thead>
             <tr>
-                <td><?php echo $value["id"] ?></td>
-                <td><?php echo $value["name"] ?></td>
-                <td><?php echo $value["surname"] ?></td>
-                <td><?php echo $value["email"] ?></td>
-                <td><?php echo $value["date"] ?></td>
-                <td>
-                    <div class="btn-group">
-                        <?php if ($value["email"] == $_SESSION["logged"]) : ?>
-                            <a href="index.php?current=edit&id=<?php echo ($value["id"]) ?>"><button class="btn btn-primary">Editar</button></a>
-                            <a href="index.php?current=delete&id=<?php echo ($value["id"]) ?>"><button class="btn btn-danger">Eliminar</button></a>
-                        <?php else : ?>
-                            <a href="index.php?current=message&from=<?php echo ($idUser) ?>&to=<?php echo ($value["id"]) ?>"><button class="btn btn-warning">Contactar</button></a>
-                        <?php endif ?>
-                    </div>
-                </td>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Correo electrónico</th>
+                <th>Fecha de registro</th>
+                <th>Acciones</th>
             </tr>
-        <?php endforeach ?>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            <?php
+            foreach ($users as $key => $value) {
+                if ($value["email"] == $_SESSION["logged"])
+                    $idUser = $value["id"];
+            }
+            ?>
+            <?php foreach ($users as $key => $value) : ?>
+                <tr>
+                    <td><?php echo $value["id"] ?></td>
+                    <td><?php echo $value["name"] ?></td>
+                    <td><?php echo $value["surname"] ?></td>
+                    <td><?php echo $value["email"] ?></td>
+                    <td><?php echo $value["date"] ?></td>
+                    <td>
+                        <div class="btn-group">
+                            <?php if ($value["email"] == $_SESSION["logged"]) : ?>
+                                <a href="index.php?current=edit&id=<?php echo ($value["id"]) ?>"><button class="btn btn-primary">Editar</button></a>
+                                <a href="index.php?current=delete&id=<?php echo ($value["id"]) ?>"><button class="btn btn-danger">Eliminar</button></a>
+                            <?php else : ?>
+                                <a href="index.php?current=message&from=<?php echo ($idUser) ?>&to=<?php echo ($value["id"]) ?>"><button class="btn btn-warning">Contactar</button></a>
+                            <?php endif ?>
+                        </div>
+                    </td>
+                </tr>
+            <?php endforeach ?>
+        </tbody>
+    </table>
+</div>
 
 <div class="container">
     <h4>Mensajes públicos</h4>
