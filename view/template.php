@@ -27,10 +27,16 @@ session_start();
 				break;
 			case "edit":
 				echo ('<title>CaraLibro - Editar información</title>');
+				break;
 			case "delete":
 				echo ('<title>CaraLibro - Eliminar usuario</title>');
+				break;
+			case "message":
+				echo ('<title>CaraLibro - Contactar con un usuario</title>');
+				break;
 			default:
 				echo ('<title>CaraLibro - Página principal</title>');
+				break;
 		}
 	}
 	?>
@@ -127,6 +133,7 @@ session_start();
 					|| $_GET["current"] == 'logout'
 					|| $_GET["current"] == 'edit'
 					|| $_GET["current"] == 'delete'
+					|| $_GET["current"] == 'message'
 				) {
 					include('view/contents/' . $_GET["current"] . '.content.php');
 				} else {
