@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-01-2020 a las 18:47:24
+-- Tiempo de generación: 09-01-2020 a las 20:12:24
 -- Versión del servidor: 10.4.10-MariaDB
--- Versión de PHP: 7.1.33
+-- Versión de PHP: 7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -299,7 +299,8 @@ INSERT INTO `mensajes` (`id`, `message`, `user`, `date`) VALUES
 (258, 'quam pharetra magna ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus', 27, '2019-11-10'),
 (259, 'sed accumsan felis ut at dolor quis odio consequat varius integer ac leo pellentesque ultrices mattis odio donec vitae', 252, '2019-08-12'),
 (260, 'quis turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec ut mauris eget', 197, '2019-11-26'),
-(261, 'curae donec pharetra magna vestibulum aliquet ultrices erat tortor sollicitudin mi', 189, '2019-08-03');
+(261, 'curae donec pharetra magna vestibulum aliquet ultrices erat tortor sollicitudin mi', 189, '2019-08-03'),
+(263, '¿Como os va la tarde?', 1, '2020-01-09');
 
 -- --------------------------------------------------------
 
@@ -577,7 +578,10 @@ INSERT INTO `privados` (`id`, `message`, `user`, `date`, `goto`) VALUES
 (256, 'turpis adipiscing lorem vitae mattis nibh ligula nec sem duis', 264, '2019-03-26', 285),
 (257, 'diam in magna bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt', 232, '2019-08-22', 114),
 (258, 'in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor', 214, '2019-08-12', 219),
-(259, 'dolor sit amet consectetuer adipiscing elit proin risus praesent lectus vestibulum quam sapien varius ut blandit non', 26, '2019-12-31', 221);
+(259, 'dolor sit amet consectetuer adipiscing elit proin risus praesent lectus vestibulum quam sapien varius ut blandit non', 26, '2019-12-31', 221),
+(260, 'Buenos días George.', 1, '2020-01-09', 2),
+(261, 'Saludos, Elio. ¿En que te puedo ayudar?', 2, '2020-01-09', 1),
+(262, 'En nada, gracias, solo quería saludar.\r\n', 1, '2020-01-09', 2);
 
 -- --------------------------------------------------------
 
@@ -590,7 +594,7 @@ CREATE TABLE `usuarios` (
   `name` text DEFAULT NULL,
   `surname` text NOT NULL,
   `email` text NOT NULL,
-  `password` varchar(10) NOT NULL,
+  `password` varchar(500) NOT NULL,
   `date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -599,8 +603,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `name`, `surname`, `email`, `password`, `date`) VALUES
-(1, 'Wini', 'Vagges', 'wvagges0@github.com', 'aNuNR4e54K', '2015-11-25 07:02:47'),
-(2, 'Phyllis', 'Baser', 'pbaser1@soup.io', 'uKHn1cSSeM', '2011-06-05 06:33:39'),
+(1, 'Elio', 'San Martín Gallart', 'esanmartingallart@gmail.com', 'elio12345', '2015-11-25 07:02:47'),
+(2, 'George', 'Belt', 'georgebelt@outlook.com', 'george123', '2011-06-05 06:33:39'),
 (3, 'Caressa', 'Sebring', 'csebring2@netvibes.com', 'nAj2IhPObe', '2010-09-12 04:30:17'),
 (4, 'Roderigo', 'Dranfield', 'rdranfield3@yellowpages.com', 'v64i1bsO0b', '2014-01-18 00:46:35'),
 (5, 'Ashlan', 'Smurfit', 'asmurfit4@washington.edu', 'eFniJ4ydQ9', '2015-03-05 15:34:22'),
@@ -929,19 +933,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `mensajes`
 --
 ALTER TABLE `mensajes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=262;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=264;
 
 --
 -- AUTO_INCREMENT de la tabla `privados`
 --
 ALTER TABLE `privados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=260;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=263;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=301;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=302;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
